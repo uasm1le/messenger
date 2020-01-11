@@ -1,0 +1,4 @@
+FROM target/hooker-0.0.1-SNAPSHOT.jar
+MAINTAINER WebHooker
+COPY hooker-0.0.1-SNAPSHOT.jar /home/hooker-0.0.1-SNAPSHOT.jar
+CMD ["java","-jar","/home/hooker-0.0.1-SNAPSHOT.jar"]
