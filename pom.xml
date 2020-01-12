@@ -6,13 +6,19 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.2.1.RELEASE</version>
+
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.messenger</groupId>
-    <artifactId>hooker</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>hooker</name>
-    <description>Demo project for Spring Boot</description>
+    <artifactId>viberwebhook.handler</artifactId>
+    <version>0.0.2</version>
+    <name>ViberWebHookReceiver</name>
+    <profiles>
+        <profile>
+            <id>1sd</id>
+        </profile>
+    </profiles>
+    <description>app to receive message from Viber messenger</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -66,6 +72,8 @@
     </dependencies>
 
     <build>
+        <finalName>${name}-${version}</finalName>
+        <defaultGoal>asd</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
