@@ -1,4 +1,4 @@
-FROM openjdk:8-jre-alpine
+FROM openjdk:8
 MAINTAINER WebHooker
 COPY target/ViberWebHookReceiver.jar /home/ViberWebHookReceiver.jar
 EXPOSE 8080

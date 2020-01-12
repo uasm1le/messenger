@@ -10,7 +10,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.messenger</groupId>
-    <artifactId>viberwebhook.handler</artifactId>
+    <artifactId>viberwebhook</artifactId>
     <version>0.0.2</version>
     <name>ViberWebHookReceiver</name>
     <profiles>
