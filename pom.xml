@@ -72,7 +72,7 @@
     </dependencies>
 
     <build>
-        <finalName>${name}</finalName>
+        <finalName>${project.name}</finalName>
         <defaultGoal>asd</defaultGoal>
         <plugins>
             <plugin>
