@@ -1,33 +1,29 @@
 package org.messenger.hooker.controllers;
 
 
+import org.messenger.hooker.handler.MessageHandler;
+import org.messenger.hooker.models.viber.IncomingMessage;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("api")
 public class MessengerController {
     @RequestMapping("/")
-    public String DefaultAnswer(@RequestBody String messageBody) {
-        System.out.println("Body --->" + messageBody);
-        return "Hello from Message API WebHook";
+    public String HelloNewUser(@RequestBody IncomingMessage incomingMessageBody) {
+
+        return new MessageHandler(incomingMessageBody).getResponse();
     }
 
-    //editMessage
-    @RequestMapping(value = "/message", method = RequestMethod.POST)
-    public String postMessage() {
-        return "Hello from Message API WebHook";
+    @ModelAttribute
+    public void setResponseHeader(HttpServletResponse response) {
+        response.setHeader("X-Viber-Auth-Token", "49dc47b90027d15f-379bbe201e6a23ce-5da4cb7542f5131d");
+
     }
-
-    //view message by guid
-    @RequestMapping(value = "/message/{id}", method = RequestMethod.GET)
-
-    public String getMessage() {
-        return "Hello from GET \"message\"  Message API WebHook";
-    }
-
 
 
 }
