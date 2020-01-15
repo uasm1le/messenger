@@ -1,6 +1,7 @@
 package org.messenger.hooker.controllers;
 
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,7 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api")
 public class MessengerController {
     @RequestMapping("/")
-    public String DefaultAnswer() {
+    public String DefaultAnswer(@RequestBody String messageBody) {
+        System.out.println("Body --->" + messageBody);
         return "Hello from Message API WebHook";
     }
 
