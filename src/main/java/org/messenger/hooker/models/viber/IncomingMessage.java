@@ -3,12 +3,13 @@ package org.messenger.hooker.models.viber;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
 
 public class IncomingMessage {
 
-
+    @NotNull
     private String event;
     private Timestamp timestamp;
     private String chat_hostname;
