@@ -8,6 +8,5 @@ public interface MessageHandlerInterface {
 
     MessageHandler setMessage(IncomingMessage incomingMessage);
 
-    String getResponse();
 
 }

@@ -1,12 +1,14 @@
 package org.messenger.hooker;
 
 import org.messenger.hooker.handler.MessageHandler;
+import org.messenger.hooker.handler.ResponseHandler;
 import org.messenger.hooker.models.viber.IncomingMessage;
 import org.messenger.hooker.models.viber.OutgoingMessage;
 import org.messenger.hooker.models.viber.Sender;
 import org.messenger.hooker.models.viber.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class HookerContextConfiguration {
@@ -37,4 +39,13 @@ public class HookerContextConfiguration {
         return new MessageHandler();
     }
 
+    @Bean(name = "responseHandler")
+    public ResponseHandler getResponseHandler() {
+        return new ResponseHandler();
+    }
+
+    @Bean(name = "restTemplate")
+    public RestTemplate getRestTemplate() {
+        return new RestTemplate();
+    }
 }

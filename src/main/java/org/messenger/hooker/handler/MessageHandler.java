@@ -1,7 +1,5 @@
 package org.messenger.hooker.handler;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.NoArgsConstructor;
 import org.messenger.hooker.models.viber.IncomingMessage;
 import org.messenger.hooker.models.viber.OutgoingMessage;
@@ -16,7 +14,8 @@ public class MessageHandler implements MessageHandlerInterface {
 
     @Autowired
     private OutgoingMessage outgoingMessage;
-
+    @Autowired
+    private ResponseHandler responseHandler;
     @Override
     public MessageHandler setMessage(IncomingMessage incomingMessage) {
         this.incomingMessage = incomingMessage;
@@ -32,9 +31,6 @@ public class MessageHandler implements MessageHandlerInterface {
 
         if (event != null && chatId != null && event.equals(START_CONVERSATION)) {
             eventStartConversation();
-        } else {
-            outgoingMessage.setText("Sorry, I dont know what todo.").setType("text");
-
         }
         return this;
     }
@@ -42,18 +38,9 @@ public class MessageHandler implements MessageHandlerInterface {
 
     private void eventStartConversation() {
         outgoingMessage.setText("Hello").setType("text");
+        responseHandler.sendAnswer();
     }
 
-    @Override
-    public String getResponse() {
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            return mapper.writeValueAsString(outgoingMessage);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
 
     @Override
     public String toString() {
