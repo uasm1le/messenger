@@ -20,17 +20,21 @@ public class MessageHandler implements MessageHandlerInterface {
     @Override
     public MessageHandler setMessage(IncomingMessage incomingMessage) {
         this.incomingMessage = incomingMessage;
-        outgoingMessage.setReceiver(incomingMessage.getUser().getId());
         return this;
     }
 
     @Override
     public MessageHandler chooseEventFlow() {
+        // check event is not null or value is normal
         String event = incomingMessage.getEvent();
-        if (event != null && event.equals(START_CONVERSATION)) {
+        // check have we chatId in incomnig message for answer on it;
+        String chatId = (incomingMessage.getUser() != null) ? incomingMessage.getUser().getId() : null;
+
+        if (event != null && chatId != null && event.equals(START_CONVERSATION)) {
             eventStartConversation();
         } else {
             outgoingMessage.setText("Sorry, I dont know what todo.").setType("text");
+
         }
         return this;
     }
