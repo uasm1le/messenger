@@ -1,8 +1,12 @@
 package org.messenger.hooker.controllers;
 
 
+import lombok.var;
+import org.messenger.hooker.HookerApplication;
 import org.messenger.hooker.handler.MessageHandler;
 import org.messenger.hooker.models.viber.IncomingMessage;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,17 +16,18 @@ import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("api")
+
 public class MessengerController {
+    @Value("${viber.authtoken}")
+    String authToken;
     @RequestMapping("/")
     public String HelloNewUser(@RequestBody IncomingMessage incomingMessageBody) {
-
         return new MessageHandler(incomingMessageBody).getResponse();
     }
 
     @ModelAttribute
     public void setResponseHeader(HttpServletResponse response) {
-        response.setHeader("X-Viber-Auth-Token", "49dc47b90027d15f-379bbe201e6a23ce-5da4cb7542f5131d");
-
+        response.setHeader("X-Viber-Auth-Token", authToken);
     }
 
 

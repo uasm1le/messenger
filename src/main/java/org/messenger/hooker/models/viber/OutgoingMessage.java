@@ -3,17 +3,19 @@ package org.messenger.hooker.models.viber;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Component
 public class OutgoingMessage {
     private String receiver;
-    private String min_api_version;
+    @Value("${viber.minapi_version}")
+    String min_api_version;
+
     @Autowired
-    private Sender sender;
+    private Sender sender = new Sender();
     private String tracking_data;
     private String type;
     private String text;

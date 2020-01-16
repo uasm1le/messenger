@@ -24,9 +24,11 @@ public class MessageHandler {
     }
 
     private void chooseEventFlow() {
-
-        if (incomingMessage.getEvent().equals(START_CONVERSATION)) {
+        String event = incomingMessage.getEvent();
+        if (event != null && event.equals(START_CONVERSATION)) {
             eventStartConversation();
+        } else {
+            outgoingMessage.setText("Sorry, I dont know what todo.");
         }
     }
 
