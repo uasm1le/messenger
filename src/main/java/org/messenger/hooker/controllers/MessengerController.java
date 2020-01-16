@@ -25,6 +25,7 @@ public class MessengerController {
 
     @RequestMapping("/")
     public String CommonHandler(@Validated @RequestBody IncomingMessage incomingMessageBody) {
+        System.out.println(incomingMessageBody);
         return messageHandler.setMessage(incomingMessageBody).chooseEventFlow().getResponse();
     }
 
