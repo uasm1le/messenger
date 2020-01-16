@@ -4,15 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Value;
 
-@Component
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 public class Sender {
+    @Value("${viber.sender.username}")
     private String Name;
+
+    @Value("${viber.sender.avatar}")
     private String avatar;
 
     @Override
