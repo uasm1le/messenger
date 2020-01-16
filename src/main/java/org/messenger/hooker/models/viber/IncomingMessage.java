@@ -2,12 +2,10 @@ package org.messenger.hooker.models.viber;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 
 
-@Component
 public class IncomingMessage {
 
 

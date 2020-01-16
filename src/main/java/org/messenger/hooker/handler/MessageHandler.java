@@ -5,37 +5,42 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.NoArgsConstructor;
 import org.messenger.hooker.models.viber.IncomingMessage;
 import org.messenger.hooker.models.viber.OutgoingMessage;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 
-@Component
+
 @NoArgsConstructor
-public class MessageHandler {
+public class MessageHandler implements MessageHandlerInterface {
     String START_CONVERSATION = "conversation_started";
 
     private IncomingMessage incomingMessage;
-    private OutgoingMessage outgoingMessage = new OutgoingMessage();
 
+    @Autowired
+    private OutgoingMessage outgoingMessage;
 
-    public MessageHandler(IncomingMessage incomingMessage) {
+    @Override
+    public MessageHandler setMessage(IncomingMessage incomingMessage) {
         this.incomingMessage = incomingMessage;
         outgoingMessage.setReceiver(incomingMessage.getUser().getId());
-        chooseEventFlow();
-
+        return this;
     }
 
-    private void chooseEventFlow() {
+    @Override
+    public MessageHandler chooseEventFlow() {
         String event = incomingMessage.getEvent();
         if (event != null && event.equals(START_CONVERSATION)) {
             eventStartConversation();
         } else {
-            outgoingMessage.setText("Sorry, I dont know what todo.");
+            outgoingMessage.setText("Sorry, I dont know what todo.").setType("text");
         }
+        return this;
     }
+
 
     private void eventStartConversation() {
-        outgoingMessage.setText("Hello");
+        outgoingMessage.setText("Hello").setType("text");
     }
 
+    @Override
     public String getResponse() {
         ObjectMapper mapper = new ObjectMapper();
         try {
