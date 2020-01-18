@@ -3,19 +3,18 @@ package org.messenger.hooker.handler;
 
 import com.google.gson.Gson;
 import lombok.NoArgsConstructor;
+import org.messenger.hooker.controllers.SendController;
 import org.messenger.hooker.models.viber.OutgoingMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 
 @NoArgsConstructor
-public class ResponseHandler implements ResponseHandlerInterface {
+public class ViberSenderHandler implements ResponseHandlerInterface {
     @Autowired
     private OutgoingMessage outgoingMessage;
     @Value("${viber.url.send_message}")
@@ -26,8 +25,7 @@ public class ResponseHandler implements ResponseHandlerInterface {
     String authToken;
     //"X-Viber-Auth-Token"
     //
-    @Autowired
-    private RestTemplate restTemplate;
+
 
 
     private String send(String url, String type, String header, String body) {
@@ -41,8 +39,8 @@ public class ResponseHandler implements ResponseHandlerInterface {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         headers.add("X-Viber-Auth-Token", authToken);
-        HttpEntity<String> entity = new HttpEntity<String>(body, headers);
-        String response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class).getBody();
+        SendController sendController = new SendController(url, HttpMethod.POST, headers, body);
+        String response = sendController.sendRequest();
         System.out.println("Response : " + response);
         return "";
     }

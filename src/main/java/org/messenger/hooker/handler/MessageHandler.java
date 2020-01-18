@@ -15,7 +15,10 @@ public class MessageHandler implements MessageHandlerInterface {
     @Autowired
     private OutgoingMessage outgoingMessage;
     @Autowired
-    private ResponseHandler responseHandler;
+    private ViberSenderHandler responseHandler;
+
+
+
     @Override
     public MessageHandler setMessage(IncomingMessage incomingMessage) {
         this.incomingMessage = incomingMessage;

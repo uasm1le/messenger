@@ -1,7 +1,9 @@
 package org.messenger.hooker;
 
+import org.messenger.hooker.controllers.SendController;
 import org.messenger.hooker.handler.MessageHandler;
-import org.messenger.hooker.handler.ResponseHandler;
+import org.messenger.hooker.handler.TelegramSenderHandler;
+import org.messenger.hooker.handler.ViberSenderHandler;
 import org.messenger.hooker.models.viber.IncomingMessage;
 import org.messenger.hooker.models.viber.OutgoingMessage;
 import org.messenger.hooker.models.viber.Sender;
@@ -40,12 +42,24 @@ public class HookerContextConfiguration {
     }
 
     @Bean(name = "responseHandler")
-    public ResponseHandler getResponseHandler() {
-        return new ResponseHandler();
+    public ViberSenderHandler getResponseHandler() {
+        return new ViberSenderHandler();
     }
 
     @Bean(name = "restTemplate")
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
     }
+
+    @Bean(name = "sendController")
+    public SendController getSendController() {
+        return new SendController();
+    }
+
+    @Bean(name = "telegramSenderHandler")
+    public TelegramSenderHandler getTelegramSenderHandler() {
+
+        return new TelegramSenderHandler();
+    }
+
 }
