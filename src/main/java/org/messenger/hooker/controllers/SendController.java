@@ -13,7 +13,7 @@ public class SendController {
     @Autowired
     private RestTemplate restTemplate;
     private String url;
-    private HttpMethod method;
+    private HttpMethod method = HttpMethod.POST;
 
     public SendController(String url, HttpMethod method, HttpHeaders headers, String body) {
         this.url = url;

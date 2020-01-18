@@ -25,7 +25,8 @@ public class ViberSenderHandler implements ResponseHandlerInterface {
     String authToken;
     //"X-Viber-Auth-Token"
     //
-
+    @Autowired
+    SendController sendController;
 
 
     private String send(String url, String type, String header, String body) {
@@ -39,7 +40,7 @@ public class ViberSenderHandler implements ResponseHandlerInterface {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         headers.add("X-Viber-Auth-Token", authToken);
-        SendController sendController = new SendController(url, HttpMethod.POST, headers, body);
+        sendController.init(url, HttpMethod.POST, headers, body);
         String response = sendController.sendRequest();
         System.out.println("Response : " + response);
         return "";
@@ -48,6 +49,8 @@ public class ViberSenderHandler implements ResponseHandlerInterface {
 
     @Override
     public void sendAnswer() {
-        System.out.println(send(url, type, "HEADER", new Gson().toJson(outgoingMessage)));
+        String body = new Gson().toJson(outgoingMessage);
+        String response = send(url, type, "HEADER", body);
+        System.out.println(response);
     }
 }
