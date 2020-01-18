@@ -40,7 +40,9 @@ public class MessageHandler implements MessageHandlerInterface {
 
 
     private void eventStartConversation() {
-        outgoingMessage.setText("Hello").setType("text");
+        outgoingMessage.setText("Hello");
+        outgoingMessage.setType("text");
+        outgoingMessage.setReceiver(incomingMessage.getUser().getId());
         responseHandler.sendAnswer();
     }
 

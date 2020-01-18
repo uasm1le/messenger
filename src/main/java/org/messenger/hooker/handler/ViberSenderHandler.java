@@ -43,7 +43,7 @@ public class ViberSenderHandler implements ResponseHandlerInterface {
         sendController.init(url, HttpMethod.POST, headers, body);
         String response = sendController.sendRequest();
         System.out.println("Response : " + response);
-        return "";
+        return response;
     }
 
 

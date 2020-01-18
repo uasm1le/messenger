@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 @Setter
 public class Sender {
     @Value("${viber.sender.username}")
-    private String Name;
+    private String name;
 
     @Value("${viber.sender.avatar}")
     private String avatar;
@@ -20,7 +20,7 @@ public class Sender {
     @Override
     public String toString() {
         return "Sender{" +
-                "Name='" + Name + '\'' +
+                "Name='" + name + '\'' +
                 ", avatar='" + avatar + '\'' +
                 '}';
     }

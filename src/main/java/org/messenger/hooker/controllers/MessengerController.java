@@ -31,7 +31,7 @@ public class MessengerController {
         System.out.println("Request :" + body);
         Gson gson = new Gson();
         incomingMessage = gson.fromJson(body, IncomingMessage.class);
-        messageHandler.setMessage(incomingMessage).chooseEventFlow();
+        messageHandler = messageHandler.setMessage(incomingMessage).chooseEventFlow();
 
         return "";
     }

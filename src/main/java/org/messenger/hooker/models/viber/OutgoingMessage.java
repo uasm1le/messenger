@@ -1,10 +1,11 @@
 package org.messenger.hooker.models.viber;
 
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 
-
+@NoArgsConstructor
 public class OutgoingMessage {
     private String receiver;
     @Value("${viber.minapi_version}")
@@ -52,18 +53,16 @@ public class OutgoingMessage {
         return type;
     }
 
-    public OutgoingMessage setType(String type) {
+    public void setType(String type) {
         this.type = type;
-        return this;
     }
 
     public String getText() {
         return text;
     }
 
-    public OutgoingMessage setText(String text) {
+    public void setText(String text) {
         this.text = text;
-        return this;
     }
 
     @Override
