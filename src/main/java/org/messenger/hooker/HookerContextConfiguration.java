@@ -22,7 +22,7 @@ public class HookerContextConfiguration {
 
     @Bean(name = "sender")
     public Sender getSender() {
-        return new Sender("Oleg", "https://goo-gl.su/21OW9");
+        return new Sender("Oleg", "http://mtdata.ru/u25/photo18DC/20636547963-0/original.jpg");
     }
 
     @Bean(name = "outgoingMessage")
