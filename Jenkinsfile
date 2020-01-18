@@ -2,7 +2,7 @@ node {
 
 
     stage('Git pull'){
-    git 'https://github.com/uasm1le/messenger.git'
+    git branch: "origin/developer", url 'https://github.com/uasm1le/messenger.git'
     echo 'Git update success!'
     }
 
