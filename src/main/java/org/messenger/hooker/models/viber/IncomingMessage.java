@@ -20,24 +20,11 @@ public class IncomingMessage {
     private String timestamp;
     private String chat_hostname;
     private Number message_token;
+    private Sender sender;
     private String type;
     @Autowired
     private User user;
     private Boolean subscribed;
-
-
-    @Override
-    public String toString() {
-        return "Message{" +
-                "event='" + event + '\'' +
-                ", timestamp=" + timestamp +
-                ", chat_hostname='" + chat_hostname + '\'' +
-                ", message_token=" + message_token +
-                ", type='" + type + '\'' +
-                ", user=" + user +
-                ", subscribed=" + subscribed +
-                '}';
-    }
 
 
 }

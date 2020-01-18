@@ -11,11 +11,18 @@ import org.springframework.beans.factory.annotation.Value;
 @Getter
 @Setter
 public class Sender {
-    @Value("${viber.sender.username}")
+
+    private String id;
+    //@Value("${viber.sender.username}")
     private String name;
 
-    @Value("${viber.sender.avatar}")
+    //@Value("${viber.sender.avatar}")
     private String avatar;
+
+    public Sender(String name, String avatar) {
+        this.name = name;
+        this.avatar = avatar;
+    }
 
     @Override
     public String toString() {
