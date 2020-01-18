@@ -57,7 +57,7 @@ public class MessageHandler implements MessageHandlerInterface {
     }
 
     private void ParsingMessage() {
-        String describe = "Я только появилсяна свет, и не понимаю всего, что ты мне пишешь. Но я выучусь, обязательно.  ";
+        String describe = "Я только появился на свет, и не понимаю всего, что ты мне пишешь. Но я выучусь, обязательно.  ";
         String name = incomingMessage.getSender().getName();
         name = (name == null) ? "друг" : name;
         String bodyText = "Прости " + name + "." + "\n" + describe;
