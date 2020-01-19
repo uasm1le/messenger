@@ -73,6 +73,17 @@ public class MessageHandler implements MessageHandlerInterface {
                 ButtonMenu_eatMenu();
                 break;
             }
+            case "/button_menu_drinklight": {
+                ButtonMenuClick();
+                ButtonMenu_LightDrink();
+                break;
+            }
+            case "/button_menu_drinkhard": {
+                ButtonMenuClick();
+                ButtonMenu_HardDrink();
+                break;
+            }
+
             default: {
 //                String describe = "Я только появился на свет, и не понимаю всего, что ты мне пишешь. Но я выучусь, обязательно.  ";
 //                String name = incomingMessage.getSender().getName();
@@ -190,6 +201,20 @@ public class MessageHandler implements MessageHandlerInterface {
         outgoingMessage.setText("Приятного аппетита!");
         outgoingMessage.setType("picture");
         outgoingMessage.setMedia("https://beerplace.com.ua/wp-content/uploads/2011/09/BarDuck-new-menu-1.jpg");
+        outgoingMessage.setReceiver(incomingMessage.getSender().getId());
+    }
+
+    private void ButtonMenu_LightDrink() {
+        outgoingMessage.setText("ООООО да! Свежего, холодного мне ! ");
+        outgoingMessage.setType("picture");
+        outgoingMessage.setMedia("https://beerplace.com.ua/wp-content/uploads/2011/09/BarDuck-new-menu-3.jpg");
+        outgoingMessage.setReceiver(incomingMessage.getSender().getId());
+    }
+
+    private void ButtonMenu_HardDrink() {
+        outgoingMessage.setText("Выпьем за любовь!");
+        outgoingMessage.setType("picture");
+        outgoingMessage.setMedia("https://beerplace.com.ua/wp-content/uploads/2011/09/BarDuck-new-menu-4.jpg");
         outgoingMessage.setReceiver(incomingMessage.getSender().getId());
     }
 
