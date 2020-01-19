@@ -140,7 +140,6 @@ public class MessageHandler implements MessageHandlerInterface {
         name = (name == null) ? "друг" : name;
         String bodyText = "Прости " + name + "." + "\n" + describe;
 
-        bodyText = new String(bodyText.getBytes(Charset.forName("UTF-8")), Charset.forName("ISO8859-1"));
         outgoingMessage.setText(bodyText);
         outgoingMessage.setType("text");
         outgoingMessage.setReceiver(incomingMessage.getSender().getId());
