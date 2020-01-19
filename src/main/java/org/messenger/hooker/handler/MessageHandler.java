@@ -1,12 +1,16 @@
 package org.messenger.hooker.handler;
 
 import lombok.NoArgsConstructor;
+import org.messenger.hooker.models.viber.Button;
 import org.messenger.hooker.models.viber.IncomingMessage;
+import org.messenger.hooker.models.viber.Keyboard;
 import org.messenger.hooker.models.viber.OutgoingMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 
 
 @NoArgsConstructor
@@ -66,7 +70,54 @@ public class MessageHandler implements MessageHandlerInterface {
         outgoingMessage.setText(bodyText);
         outgoingMessage.setType("text");
         outgoingMessage.setReceiver(incomingMessage.getSender().getId());
+
+
+        Keyboard keyboard = new Keyboard();
+        keyboard.setDefaultHeight(true);
+
+        ArrayList<Button> buttons = new ArrayList<>();
+        buttons.add(new Button().setColumns(2)
+                .setRows(1)
+                .setText("О нас !")
+                .setActionType("reply")
+                .setBgColor("#2db9b9")
+                .setActionBody("replyTo1"));
+
+        buttons.add(new Button().setColumns(2)
+                .setRows(1)
+                .setText("Бронь столиков")
+                .setActionType("reply")
+                .setBgColor("#2db9b9")
+                .setActionBody("replyTo1"));
+
+        buttons.add(new Button().setColumns(2)
+                .setRows(1)
+                .setText("Карта столов")
+                .setActionType("reply")
+                .setBgColor("#2db9b9")
+                .setActionBody("replyTo1"));
+
+        buttons.add(new Button().setColumns(3)
+                .setRows(1)
+                .setText("Меню")
+                .setActionType("reply")
+                .setBgColor("#2db9b9")
+                .setActionBody("replyTo1"));
+
+        buttons.add(new Button().setColumns(3)
+                .setRows(1)
+                .setText("Акции")
+                .setActionType("reply")
+                .setBgColor("#2db9b9")
+                .setActionBody("replyTo1"));
+
+        keyboard.setButtons(buttons);
+        System.out.println("Keyboard : " + keyboard.toString());
+        outgoingMessage.setKeyboard(keyboard);
+
+
         responseHandler.sendAnswer();
+
 
     }
 
@@ -82,6 +133,8 @@ public class MessageHandler implements MessageHandlerInterface {
         outgoingMessage.setType("text");
         outgoingMessage.setReceiver(incomingMessage.getUser().getId());
         responseHandler.sendAnswer();
+
+
     }
 
 

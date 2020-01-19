@@ -4,6 +4,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
+import java.util.ArrayList;
+
 
 @NoArgsConstructor
 public class OutgoingMessage {
@@ -16,6 +18,11 @@ public class OutgoingMessage {
     private String tracking_data;
     private String type;
     private String text;
+    private Keyboard keyboard;
+
+    public void setKeyboard(Keyboard keyboard) {
+        this.keyboard = keyboard;
+    }
 
     public String getReceiver() {
         return receiver;
@@ -52,6 +59,7 @@ public class OutgoingMessage {
     public String getType() {
         return type;
     }
+
 
     public void setType(String type) {
         this.type = type;

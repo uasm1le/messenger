@@ -27,7 +27,7 @@ public class MessengerController {
 
     @RequestMapping("/")
     public String CommonHandler(@RequestBody String body) {
-        telegramSenderHandler.setBody(body).logSend("Request is :");
+        //telegramSenderHandler.setBody(body).logSend("Request is :");
         System.out.println("Request :" + body);
         Gson gson = new Gson();
         incomingMessage = gson.fromJson(body, IncomingMessage.class);
