@@ -30,18 +30,13 @@ public class ViberSenderHandler implements ResponseHandlerInterface {
 
 
     private String send(String url, String type, String header, String body) {
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println(url);
-        System.out.println(type);
-        System.out.println(header);
-        System.out.println(body);
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         headers.add("X-Viber-Auth-Token", authToken);
         sendController.init(url, HttpMethod.POST, headers, body);
+
         String response = sendController.sendRequest();
+        System.out.println("Request - Response : " + body);
         System.out.println("Response : " + response);
         return response;
     }
