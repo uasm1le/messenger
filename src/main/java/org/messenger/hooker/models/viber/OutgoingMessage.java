@@ -20,6 +20,12 @@ public class OutgoingMessage {
     private String text;
     private Keyboard keyboard;
 
+    public void setMedia(String media) {
+        this.media = media;
+    }
+
+    private String media;
+
     public void setKeyboard(Keyboard keyboard) {
         this.keyboard = keyboard;
     }

@@ -25,6 +25,7 @@ public class IncomingMessage {
     @Autowired
     private User user;
     private Boolean subscribed;
+    private Message message;
 
 
 }
