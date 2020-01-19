@@ -93,7 +93,7 @@ public class MessageHandler implements MessageHandlerInterface {
                         .setText("О нас !")
                         .setActionType("reply")
                         .setBgColor("#2db9b9")
-                        .setActionBody("replyTo1"));
+                        .setActionBody("/abount_info"));
 
                 buttons.add(new Button().setColumns(2)
                         .setRows(1)
@@ -114,7 +114,7 @@ public class MessageHandler implements MessageHandlerInterface {
                         .setText("Меню")
                         .setActionType("reply")
                         .setBgColor("#2db9b9")
-                        .setActionBody("/buttom_menu"));
+                        .setActionBody("/button_menu"));
 
                 buttons.add(new Button().setColumns(3)
                         .setRows(1)
@@ -129,12 +129,6 @@ public class MessageHandler implements MessageHandlerInterface {
 
             }
         }
-
-
-
-
-
-
         responseHandler.sendAnswer();
 
 
@@ -161,21 +155,21 @@ public class MessageHandler implements MessageHandlerInterface {
                 .setText("Закуски")
                 .setActionType("reply")
                 .setBgColor("#2db9b9")
-                .setActionBody("replyTo1"));
+                .setActionBody("/button_menu_eat"));
 
         buttons.add(new Button().setColumns(2)
                 .setRows(1)
                 .setText("Легкий алкоголь")
                 .setActionType("reply")
                 .setBgColor("#2db9b9")
-                .setActionBody("replyTo1"));
+                .setActionBody("/button_menu_drinklight"));
 
         buttons.add(new Button().setColumns(2)
                 .setRows(1)
                 .setText("Крепкий алкоголь")
                 .setActionType("reply")
                 .setBgColor("#2db9b9")
-                .setActionBody("replyTo1"));
+                .setActionBody("/button_menu_drinkhard"));
 
         buttons.add(new Button().setColumns(3)
                 .setRows(1)
@@ -210,7 +204,6 @@ public class MessageHandler implements MessageHandlerInterface {
         String name = incomingMessage.getUser().getName();
         name = (name == null) ? "друг" : name;
         String bodyText = "Привет " + name + "!" + "\n" + describe;
-        System.out.println(bodyText);
         bodyText = new String(bodyText.getBytes(Charset.forName("UTF-8")), Charset.forName("ISO8859-1"));
         outgoingMessage.setText(bodyText);
         outgoingMessage.setType("text");
