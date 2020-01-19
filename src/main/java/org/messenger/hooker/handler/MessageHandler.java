@@ -85,11 +85,12 @@ public class MessageHandler implements MessageHandlerInterface {
             case "/button_menu_allImg": {
                 ButtonMenu_eatMenu();
                 responseHandler.sendAnswer();
+                outgoingMessage.clear();
                 ButtonMenu_LightDrink();
                 responseHandler.sendAnswer();
+                outgoingMessage.clear();
                 ButtonMenuClick();
                 ButtonMenu_HardDrink();
-                responseHandler.sendAnswer();
                 break;
             }
 
@@ -202,7 +203,6 @@ public class MessageHandler implements MessageHandlerInterface {
                 .setActionBody("/main_menu"));
 
         keyboard.setButtons(buttons);
-        System.out.println("Keyboard : " + keyboard.toString());
         outgoingMessage.setKeyboard(keyboard);
     }
 
