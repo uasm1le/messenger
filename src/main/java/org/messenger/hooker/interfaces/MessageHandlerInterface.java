@@ -1,5 +1,6 @@
-package org.messenger.hooker.handler;
+package org.messenger.hooker.interfaces;
 
+import org.messenger.hooker.handler.MessageHandler;
 import org.messenger.hooker.models.viber.IncomingMessage;
 
 

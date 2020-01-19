@@ -1,4 +1,4 @@
-package org.messenger.hooker.handler;
+package org.messenger.hooker.interfaces;
 
 public interface ResponseHandlerInterface {
     void sendAnswer();

@@ -1,6 +1,7 @@
 package org.messenger.hooker.handler;
 
 import lombok.NoArgsConstructor;
+import org.messenger.hooker.interfaces.MessageHandlerInterface;
 import org.messenger.hooker.models.viber.Button;
 import org.messenger.hooker.models.viber.IncomingMessage;
 import org.messenger.hooker.models.viber.Keyboard;
@@ -8,8 +9,6 @@ import org.messenger.hooker.models.viber.OutgoingMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 
@@ -83,6 +82,17 @@ public class MessageHandler implements MessageHandlerInterface {
                 ButtonMenu_HardDrink();
                 break;
             }
+            case "/button_menu_allImg": {
+                ButtonMenu_eatMenu();
+                responseHandler.sendAnswer();
+                ButtonMenu_LightDrink();
+                responseHandler.sendAnswer();
+                ButtonMenuClick();
+                ButtonMenu_HardDrink();
+                responseHandler.sendAnswer();
+                break;
+            }
+
 
             default: {
 //                String describe = "Я только появился на свет, и не понимаю всего, что ты мне пишешь. Но я выучусь, обязательно.  ";
@@ -153,7 +163,7 @@ public class MessageHandler implements MessageHandlerInterface {
 
 
         Keyboard keyboard = new Keyboard();
-        keyboard.setDefaultHeight(true);
+        //keyboard.setDefaultHeight(true);
 
         ArrayList<Button> buttons = new ArrayList<>();
         buttons.add(new Button().setColumns(2)
@@ -182,7 +192,7 @@ public class MessageHandler implements MessageHandlerInterface {
                 .setText("Все меню сразу ")
                 .setActionType("reply")
                 .setBgColor("#2db9b9")
-                .setActionBody("/buttom_menu"));
+                .setActionBody("/button_menu_allImg"));
 
         buttons.add(new Button().setColumns(3)
                 .setRows(1)
@@ -224,7 +234,6 @@ public class MessageHandler implements MessageHandlerInterface {
         String name = incomingMessage.getUser().getName();
         name = (name == null) ? "друг" : name;
         String bodyText = "Привет " + name + "!" + "\n" + describe;
-        bodyText = new String(bodyText.getBytes(Charset.forName("UTF-8")), Charset.forName("ISO8859-1"));
         outgoingMessage.setText(bodyText);
         outgoingMessage.setType("text");
         outgoingMessage.setReceiver(incomingMessage.getUser().getId());
