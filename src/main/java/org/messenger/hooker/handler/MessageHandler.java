@@ -73,13 +73,12 @@ public class MessageHandler implements MessageHandlerInterface {
                 break;
             }
             default: {
-                String describe = "Я только появился на свет, и не понимаю всего, что ты мне пишешь. Но я выучусь, обязательно.  ";
-                String name = incomingMessage.getSender().getName();
-                name = (name == null) ? "друг" : name;
-                String bodyText = "Прости " + name + "." + "\n" + describe;
-
-                bodyText = new String(bodyText.getBytes(Charset.forName("UTF-8")), Charset.forName("ISO8859-1"));
-                outgoingMessage.setText(bodyText);
+//                String describe = "Я только появился на свет, и не понимаю всего, что ты мне пишешь. Но я выучусь, обязательно.  ";
+//                String name = incomingMessage.getSender().getName();
+//                name = (name == null) ? "друг" : name;
+//                String bodyText = "Прости " + name + "." + "\n" + describe;
+//                bodyText = new String(bodyText.getBytes(Charset.forName("UTF-8")), Charset.forName("ISO8859-1"));
+                outgoingMessage.setText("");
                 outgoingMessage.setType("text");
                 outgoingMessage.setReceiver(incomingMessage.getSender().getId());
 
