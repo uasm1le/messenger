@@ -99,6 +99,7 @@ public class OutgoingMessage {
         text = null;
         keyboard = null;
         receiver = null;
+        media = null;
     }
 
 
