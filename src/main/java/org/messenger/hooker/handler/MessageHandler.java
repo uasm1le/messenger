@@ -77,8 +77,8 @@ public class MessageHandler implements MessageHandlerInterface {
 //                String name = incomingMessage.getSender().getName();
 //                name = (name == null) ? "друг" : name;
 //                String bodyText = "Прости " + name + "." + "\n" + describe;
-//                bodyText = new String(bodyText.getBytes(Charset.forName("UTF-8")), Charset.forName("ISO8859-1"));
-                outgoingMessage.setText("");
+
+                outgoingMessage.setText("Меню ниже, выбирай - а лучше заходи ! ");
                 outgoingMessage.setType("text");
                 outgoingMessage.setReceiver(incomingMessage.getSender().getId());
 

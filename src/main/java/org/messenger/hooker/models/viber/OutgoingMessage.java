@@ -4,6 +4,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 
@@ -76,7 +77,7 @@ public class OutgoingMessage {
     }
 
     public void setText(String text) {
-        this.text = text;
+        this.text = new String(text.getBytes(Charset.forName("UTF-8")), Charset.forName("ISO8859-1"));
     }
 
     @Override
