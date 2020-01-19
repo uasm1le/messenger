@@ -91,4 +91,15 @@ public class OutgoingMessage {
                 ", text='" + text + '\'' +
                 '}';
     }
+
+    public void clear() {
+        sender = null;
+        tracking_data = null;
+        type = null;
+        text = null;
+        keyboard = null;
+        receiver = null;
+    }
+
+
 }

@@ -37,6 +37,7 @@ public class MessageHandler implements MessageHandlerInterface {
     @Override
     public MessageHandler chooseEventFlow() {
         // check event is not null or value is normal
+        outgoingMessage.clear();
         String event = incomingMessage.getEvent();
         // check have we chatId in incomnig message for answer on it;
 
