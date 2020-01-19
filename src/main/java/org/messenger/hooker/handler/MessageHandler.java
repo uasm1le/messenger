@@ -135,12 +135,8 @@ public class MessageHandler implements MessageHandlerInterface {
     }
 
     private void ButtonMenuClick() {
-        String describe = "Я только появился на свет, и не понимаю всего, что ты мне пишешь. Но я выучусь, обязательно.  ";
-        String name = incomingMessage.getSender().getName();
-        name = (name == null) ? "друг" : name;
-        String bodyText = "Прости " + name + "." + "\n" + describe;
 
-        outgoingMessage.setText(bodyText);
+        outgoingMessage.setText("Приятного аппетита!");
         outgoingMessage.setType("text");
         outgoingMessage.setReceiver(incomingMessage.getSender().getId());
 
