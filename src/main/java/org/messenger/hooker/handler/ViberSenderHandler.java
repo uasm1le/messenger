@@ -4,8 +4,7 @@ package org.messenger.hooker.handler;
 import com.google.gson.Gson;
 import lombok.NoArgsConstructor;
 import org.messenger.hooker.controllers.SendController;
-import org.messenger.hooker.interfaces.ResponseHandlerInterface;
-import org.messenger.hooker.models.viber.OutgoingMessage;
+import org.messenger.hooker.models.OutgoingMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -15,9 +14,8 @@ import org.springframework.http.MediaType;
 import java.util.Arrays;
 
 @NoArgsConstructor
-public class ViberSenderHandler implements ResponseHandlerInterface {
-    @Autowired
-    private OutgoingMessage outgoingMessage;
+public class ViberSenderHandler {
+
     @Value("${viber.url.send_message}")
     private String url;
     @Value("${viber.url.request_type}")
@@ -45,8 +43,7 @@ public class ViberSenderHandler implements ResponseHandlerInterface {
     }
 
 
-    @Override
-    public void sendAnswer() {
+    public void sendAnswer(OutgoingMessage outgoingMessage) {
         String body = new Gson().toJson(outgoingMessage);
         telegramSenderHandler.setBody(body).logSend("Response is :");
         String response = send(url, type, "HEADER", body);

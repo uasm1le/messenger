@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 @NoArgsConstructor
 @Getter
@@ -95,7 +96,7 @@ public class Button {
     }
 
     public Button setText(String text) {
-        this.text = new String(text.getBytes(Charset.forName("UTF-8")), Charset.forName("ISO8859-1"));
+        this.text = new String(text.getBytes(StandardCharsets.UTF_8), Charset.forName("ISO8859-1"));
         return this;
     }
 

@@ -1,44 +1,28 @@
 package org.messenger.hooker;
 
 import org.messenger.hooker.controllers.SendController;
-import org.messenger.hooker.handler.MessageHandler;
+import org.messenger.hooker.handler.ViberMessageProcessor;
 import org.messenger.hooker.handler.TelegramSenderHandler;
 import org.messenger.hooker.handler.ViberSenderHandler;
-import org.messenger.hooker.models.viber.IncomingMessage;
-import org.messenger.hooker.models.viber.OutgoingMessage;
-import org.messenger.hooker.models.viber.Sender;
-import org.messenger.hooker.models.viber.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.annotation.WebListener;
+
 @Configuration
+@WebListener
 public class HookerContextConfiguration {
+    final String scopeType = "request";
+    private int count = 1;
 
-    @Bean(name = "user")
-    public User getUser() {
-        return new User();
-    }
 
-    @Bean(name = "sender")
-    public Sender getSender() {
-        return new Sender("Oleg", "http://mtdata.ru/u25/photo18DC/20636547963-0/original.jpg");
-    }
 
-    @Bean(name = "outgoingMessage")
-    public OutgoingMessage getOutgoingMessage() {
-        return new OutgoingMessage();
-    }
-
-    @Bean(name = "incomingMessage")
-    public IncomingMessage getIncomingMessage() {
-        return new IncomingMessage();
-    }
 
 
     @Bean(name = "messageHandler")
-    public MessageHandler getMessageHandler() {
-        return new MessageHandler();
+    public ViberMessageProcessor getMessageHandler() {
+        return new ViberMessageProcessor();
     }
 
     @Bean(name = "responseHandler")
@@ -53,6 +37,7 @@ public class HookerContextConfiguration {
 
     @Bean(name = "sendController")
     public SendController getSendController() {
+
         return new SendController();
     }
 

@@ -39,6 +39,11 @@ public class TelegramSenderHandler {
     @Value("${telegram.botcode}")
     private String botCode;
 
+
+    @Value("${telegram.resolutiontosend}")
+    private Boolean resolutionToSend;
+
+
     private String body;
     HttpHeaders headers = new HttpHeaders();
 
@@ -79,28 +84,31 @@ public class TelegramSenderHandler {
     }
 
     private HttpResponse postRequest() {
+
         HttpClient myClient = HttpClientBuilder.create().build();
         HttpPost myConnection = new HttpPost(url + botCode + telegramSendMessageMethod);
         HttpResponse response = null;
-        try {
+        if (resolutionToSend) {
+            try {
 
-            //Your parameter should be as..
+                //Your parameter should be as..
 
-            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-            nameValuePairs.add(new BasicNameValuePair("chat_id", chatId));
-            nameValuePairs.add(new BasicNameValuePair("parse_mode", "markdown"));
-            nameValuePairs.add(new BasicNameValuePair("text", body));
+                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+                nameValuePairs.add(new BasicNameValuePair("chat_id", chatId));
+                nameValuePairs.add(new BasicNameValuePair("parse_mode", "markdown"));
+                nameValuePairs.add(new BasicNameValuePair("text", body));
 
 //set parameters to ur URL
 
-            myConnection.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                myConnection.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 //execute the connection
-            response = myClient.execute(myConnection);
-        } catch (ClientProtocolException e) {
+                response = myClient.execute(myConnection);
+            } catch (ClientProtocolException e) {
 
-            //e.printStackTrace();
-        } catch (IOException e) {
-            //e.printStackTrace();
+                //e.printStackTrace();
+            } catch (IOException e) {
+                //e.printStackTrace();
+            }
         }
         return response;
     }

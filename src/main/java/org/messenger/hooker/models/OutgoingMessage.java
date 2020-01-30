@@ -1,10 +1,14 @@
-package org.messenger.hooker.models.viber;
+package org.messenger.hooker.models;
 
 import lombok.NoArgsConstructor;
+import org.messenger.hooker.models.viber.Keyboard;
+import org.messenger.hooker.models.viber.Sender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
+import javax.persistence.Entity;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 
@@ -12,7 +16,7 @@ import java.util.ArrayList;
 public class OutgoingMessage {
     private String receiver;
     @Value("${viber.minapi_version}")
-    String min_api_version;
+    private String min_api_version;
 
     @Autowired
     private Sender sender;
@@ -77,7 +81,7 @@ public class OutgoingMessage {
     }
 
     public void setText(String text) {
-        this.text = new String(text.getBytes(Charset.forName("UTF-8")), Charset.forName("ISO8859-1"));
+        this.text = new String(text.getBytes(StandardCharsets.UTF_8), Charset.forName("ISO8859-1"));
     }
 
     @Override
@@ -90,16 +94,6 @@ public class OutgoingMessage {
                 ", type='" + type + '\'' +
                 ", text='" + text + '\'' +
                 '}';
-    }
-
-    public void clear() {
-        sender = null;
-        tracking_data = null;
-        type = null;
-        text = null;
-        keyboard = null;
-        receiver = null;
-        media = null;
     }
 
 
